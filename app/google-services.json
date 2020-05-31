@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1060405607431",
+    "firebase_url": "https://mind-spark-international.firebaseio.com",
+    "project_id": "mind-spark-international",
+    "storage_bucket": "mind-spark-international.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060405607431:android:8586f38cec879eefbffea2",
+        "android_client_info": {
+          "package_name": "com.example.mindspark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060405607431-esf79djb5nc9er6f97hodf7kr71faus3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mindspark",
+            "certificate_hash": "2e563f81f151e3721d6ac8f112dff6315c0ac4a2"
+          }
+        },
+        {
+          "client_id": "1060405607431-rpmpkqs4d1d209fep49b2pp7f8t49gev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfSRIf-Pz31aZ_HSIy4S-b3V0I8YD_Kj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060405607431-rpmpkqs4d1d209fep49b2pp7f8t49gev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

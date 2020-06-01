@@ -35,6 +35,7 @@ public class ObjectFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         Bundle args = getArguments();
         IntroAdapter introAdapter = new IntroAdapter(getChildFragmentManager());
         viewPager = view.findViewById(R.id.smallViewPager);
@@ -43,6 +44,9 @@ public class ObjectFragment extends Fragment {
         articleHeader = view.findViewById(R.id.articleHeader);
         articleHeader.setText(args.getString(headline));
         textView.setText(Integer.toString(args.getInt(ARG_OBJECT)));
+
+
     }
+
 
 }

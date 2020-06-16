@@ -74,40 +74,7 @@ public class HomeFragment extends Fragment{
 
     }
 
-    private void readData(){
 
-        db.collection("article")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-
-                        if(task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                Log.d("Tag", document.getId() + " => " + document.getString("Title"));
-                                String author = document.getString("Author");
-                                String field = document.getString("Field");
-                                String title = document.getString("Title");
-                                String postType = document.getString("postType");
-                                int estReadTime = document.getLong("estReadTime").intValue();
-                                int numReads = document.getLong("numReads").intValue();
-                                ArrayList<String> bodyText = (ArrayList<String>) document.get("BodyText");
-                                ArrayList<Integer> actualReadTime = (ArrayList<Integer>) document.get("actReadTime");
-
-                                a = new Article(author, field, title, postType, estReadTime, numReads, bodyText, actualReadTime);
-                                articles.add(a);
-                                Log.d("TagSize", "" + articles.size());
-                                Log.d("TagReal", "" + articles.get(0).getAuthor());
-
-                            }
-
-                        }
-                    }
-                });
-
-    }
 
 
 

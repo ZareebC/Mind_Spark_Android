@@ -9,6 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
@@ -16,19 +22,16 @@ import java.util.concurrent.CountDownLatch;
 public class  CollectionAdapter extends FragmentStatePagerAdapter {
     public ArrayList<Article> articles;
     ArrayList<String> titles;
-    CountDownLatch done;
-    int realPosition;
+    public static int realPosition;
+    Article a;
+    private FirebaseFirestore db;
+
     public CollectionAdapter(FragmentManager fragment) {
         super(fragment);
-        done = new CountDownLatch(1);
-        done.countDown();
-        try {
-            done.await(); //it will wait till the response is received from firebase.
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+        db = FirebaseFirestore.getInstance();
         articles = MainActivity.articles;
         titles = new ArrayList<>();
+        new Thread().run();
         Log.d("TagOML", "" + articles.size());
 
         for(int i = 0; i < articles.size(); i++){
@@ -36,37 +39,12 @@ public class  CollectionAdapter extends FragmentStatePagerAdapter {
         }
         Log.d("TagTitle", ""+titles.size());
     }
-/*
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        super.destroyItem(container, position, object);
-        Fragment fragment = new ObjectFragment();
-        Bundle args = new Bundle();
-
-        // Our object is just an integer :-P
-        //args.putInt(ObjectFragment.ARG_OBJECT, position);
-        done.countDown();
-        Log.d("TagThingies", realPosition +"");
-        if(realPosition == 1){
-            Log.d("TagFinal", articles.size()+"");
-            args.putString(ObjectFragment.headline, articles.get(realPosition).getTitle());
-        }
-        try {
-            done.await(); //it will wait till the response is received from firebase.
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        fragment.setArguments(args);
-        //return fragment;
-    }
-
- */
 
     @Override
     public Fragment getItem(int position) {
         // Return a NEW fragment instance in createFragment(int)
 
-        realPosition = position;
+        realPosition = position-1;
         Fragment fragment = new ObjectFragment();
         Bundle args = new Bundle();
         if (position == 0){
@@ -74,17 +52,19 @@ public class  CollectionAdapter extends FragmentStatePagerAdapter {
         }
         // Our object is just an integer :-P
         args.putInt(ObjectFragment.ARG_OBJECT, position);
-        done.countDown();
         Log.d("Tag25",""+articles.size());
+        Log.d("Position0", "Real: " + realPosition + " Fake: " + position);
         if(position != 0){
-            //args.putString(ObjectFragment.headline, articles.get(position-1).getTitle());
+            Log.d("Position1", "Reached");
+            args.putInt(MainArticlePage.realPos, realPosition);
+            args.putString(ObjectFragment.headline, articles.get(position-1).getTitle());
+            args.putString(ObjectFragment.author_string, articles.get(position-1).getAuthor());
+            args.putString(ObjectFragment.url_holder, articles.get(position-1).getImageURL());
+            args.putString(ObjectFragment.author_id, articles.get(position-1).getAuthorID());
         }
-        try {
-            done.await(); //it will wait till the response is received from firebase.
-        } catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        Log.d("Tag25",""+articles.size());
+
+        Log.d("Tag27",""+articles.size());
+        Log.d("Position", "Real: " + realPosition + " Fake: " + position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -95,10 +75,17 @@ public class  CollectionAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
 
         //Log.d("TagThing", ""+articles.size());
-        return 100;
+        return articles.size()+1;
     }
 
-
-
+    public class Thread extends java.lang.Thread{
+        public void run(){
+            try {
+                CollectionAdapter.Thread.sleep(1);
+            }
+            catch (Exception e) {
+            }
+        }
+    }
 
 }

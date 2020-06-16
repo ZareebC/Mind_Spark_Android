@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fStore;
     String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,9 @@ public class Register extends AppCompatActivity {
                 String passString = password.getText().toString().trim();
                 String firstNameString = firstName.getText().toString().trim();
                 String lastnNameString = lastName.getText().toString().trim();
+                String urlProf = "";
+                int followers = 0;
+                ArrayList<Article> userArticles = new ArrayList<>();
                 if(TextUtils.isEmpty(emailString)){
                     email.setError("Email Required");
                     return;
@@ -93,6 +98,9 @@ public class Register extends AppCompatActivity {
                                         user.put("firstName", firstNameString);
                                         user.put("lastName", lastnNameString);
                                         user.put("email", emailString);
+                                        user.put("articles", userArticles);
+                                        user.put("followers", followers);
+                                        user.put("profilePicImg", urlProf);
                                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

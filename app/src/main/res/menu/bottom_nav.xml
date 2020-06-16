@@ -4,14 +4,16 @@
     <item
         android:id="@+id/homeItem"
         android:icon="@drawable/ic_home_black_24dp"
-        android:iconTint="#000000"
+        android:iconTint="#60aaa1"
         android:title="Home" />
     <item
         android:id="@+id/createIcon"
         android:icon="@drawable/ic_add_circle_black_24dp"
+        android:iconTint="#60aaa1"
         android:title="Create" />
     <item
         android:id="@+id/profileIcon"
         android:icon="@drawable/ic_account_circle_black_24dp"
+        android:iconTint="#60aaa1"
         android:title="Profile" />
 </menu>

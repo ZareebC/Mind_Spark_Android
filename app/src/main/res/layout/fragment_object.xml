@@ -5,13 +5,16 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3D366"
     tools:context=".ObjectFragment">
+
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,18 +22,18 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/smallViewPager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="348dp"
+        android:layout_height="345dp"
         android:layout_centerInParent='true'
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:background="#000F0E0E"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:foregroundTint="#00E00E0E"
-        android:outlineAmbientShadowColor="#00000000"
+        android:outlineAmbientShadowColor="#1f405e"
         android:outlineSpotShadowColor="#C90A0A"
         android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/readArticle"
@@ -61,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp "
+                android:paddingRight="10dp"
                 android:src="@mipmap/ic_launcher_round" />
 
             <ImageView
@@ -117,10 +120,10 @@
         android:text="View Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subjectScroller"
-        app:layout_constraintVertical_bias="0.919" />
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@drawable/button_look"/>
 
     <ImageView
         android:id="@+id/profPic"
@@ -162,8 +165,22 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/readArticle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profPic"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/dropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/articleHeader"
+        app:layout_constraintEnd_toEndOf="@+id/subjectScroller"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subjectScroller"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
